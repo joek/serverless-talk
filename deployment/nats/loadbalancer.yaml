@@ -1,0 +1,19 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nats-elb
+  namespace: default
+  labels:
+    component: nats
+
+  annotations:
+    # Increase the ELB idle timeout to avoid issues with WebSockets or Server-Sent Events.
+    service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: '3600'
+spec:
+  type: LoadBalancer
+  selector:
+    component: nats
+  ports:
+  - name: nats
+    port: 4222
+    targetPort: 4222

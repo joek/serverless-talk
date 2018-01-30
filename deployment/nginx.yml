@@ -1,0 +1,54 @@
+apiVersion: apps/v1beta2 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: beershop-deployment
+  labels:
+    app: beershop
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: beershop
+  template:
+    metadata:
+      labels:
+        app: beershop
+    spec:
+      containers:
+      - name: beershop
+        image: joekhybris/beershop:latest
+        ports:
+        - containerPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: beershop-service
+spec:
+  selector:
+    app: beershop
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 80
+  clusterIP: 10.3.103.98
+  type: ClusterIP
+status:
+  loadBalancer: {}
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: beershop-ingress
+spec:
+  rules:
+  - host: beershop.dkomatx.yaas.io
+    http:
+      paths:
+      - backend:
+          serviceName: beershop-service
+          servicePort: 8080
+        path: /
+status:
+  loadBalancer: {}

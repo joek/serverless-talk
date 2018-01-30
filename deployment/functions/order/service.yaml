@@ -1,0 +1,80 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: init-payment-ingress
+spec:
+  rules:
+  - host: init-payment.dkomatx.yaas.io
+    http:
+      paths:
+      - backend:
+          serviceName: init-payment
+          servicePort: 8080
+        path: /
+status:
+  loadBalancer: {}
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: execute-payment-ingress
+spec:
+  rules:
+  - host: execute-payment.dkomatx.yaas.io
+    http:
+      paths:
+      - backend:
+          serviceName: execute-payment
+          servicePort: 8080
+        path: /
+status:
+  loadBalancer: {}
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: create-order-ingress
+spec:
+  rules:
+  - host: create-order.dkomatx.yaas.io
+    http:
+      paths:
+      - backend:
+          serviceName: create-order
+          servicePort: 8080
+        path: /
+status:
+  loadBalancer: {}
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: get-order-ingress
+spec:
+  rules:
+  - host: get-order.dkomatx.yaas.io
+    http:
+      paths:
+      - backend:
+          serviceName: get-order
+          servicePort: 8080
+        path: /
+status:
+  loadBalancer: {}
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: update-order-status-ingress
+spec:
+  rules:
+  - host: update-order-status.dkomatx.yaas.io
+    http:
+      paths:
+      - backend:
+          serviceName: update-order-status
+          servicePort: 8080
+        path: /
+status:
+  loadBalancer: {}

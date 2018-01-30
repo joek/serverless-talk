@@ -1,0 +1,16 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: product-ingress
+spec:
+  rules:
+  - host: product-service.dkomatx.yaas.io
+    http:
+      paths:
+      - backend:
+          serviceName: product-service
+          servicePort: 8080
+        path: /
+status:
+  loadBalancer: {}

@@ -1,0 +1,210 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h2>Serverless Technologies</h2>
+					Johannes Engelke, 2018
+
+					<aside class="notes">
+						Before we start:
+						<ul>
+							<li>Who knows AWS Lambdas?</li>
+							<li>Who has used them?</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h2>Who am I?</h2>
+					<div style="text-align: left; float: left;">
+						<ul>
+							<li>Product Owner Serverless @ SAP Hybris</li>
+							<li>Go developer</li>
+							<li>Robot enthusiast</li>
+						</ul>
+					</div>
+				</section>
+
+				<section>
+					<!-- <section>
+						<h2>Serverless</h2>
+						<blockquote cite="https://martinfowler.com/articles/serverless.html">
+							“Serverless architectures refer to applications that significantly depend on <span class="fragment highlight-red">third-party services</span> (knows as Backend as a Service or "BaaS") or on custom code that's run in <span class="fragment highlight-red">ephemeral containers</span> (Function as a Service or <span class="fragment highlight-red">"FaaS"</span>)...”
+						</blockquote>
+						<small>https://martinfowler.com/articles/serverless.html</small>
+
+						<aside class="notes">
+							<ul>
+								<li>Obviously Martin Fowler has a blogpost about it</li>
+								<li>He points out there are two differerent architecture types of serverless</li>
+								<ul>
+									<li>BaaS</li>
+									<li>FaaS</li>
+								</ul>
+								<li>I like to point out, that FaaS without BaaS is not really valuable</li>
+							</ul>
+						</aside>
+					</section> -->
+
+					<section>
+						<h2>D-DIY Architecture</h2>
+						Don't do it yourself!
+					</section>
+					<section>
+						<h2>FaaS</h2>
+						Function as a Service
+					</section>
+					<section>
+						<h2>AWS Lambdas</h2>
+						<img src="images/lambda.png" alt="lambda example" />
+						<small>https://docs.aws.amazon.com/solutions/latest/data-lake-solution/architecture.html</small>
+
+						<aside class="notes">
+							<ul>
+								<li>As you can see here</li>
+								<li>All AWS Lambda Architectures are looking like this</li>
+								<li>A few Lambda Functions using many Backingservices</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Kubeless</h2>
+					</section>
+				</section>
+				<section>
+					<section data-background-iframe="http://beershop.dkomatx.yaas.io/" data-background-interactive>
+						<aside class="notes">
+							<ul>
+								<li>That was the theory part</li>
+								<li> I build a Webshop based on a couple of lambda functions using etcd as a backingservice</li>
+								<li>As we are building a FaaS Plattform based on Kubeless, the functions are deployed to kubless</li>
+								<li>Kubeless is a FaaS System running on Kubernetes</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h2>Serverless Webshop</h2>
+						<ul>
+							<li>JavaScript based Webfrontend</li>
+							<li>Lambdas for:</li>
+							<ul>
+								<li>Product Service</li>
+								<li>Payment Creation</li>
+								<li>Payment Execution (+ Order create)</li>
+							</ul>
+						</ul>
+					</section>
+					<section>
+						<h2>Product Service</h2>
+						<pre><code class="js" data-trim data-noescape>
+							id = req.originalUrl.replace(/^\//, "");
+					    if(id != ""){
+					      console.log(id)
+					      client.get("product_" + id).json()
+					        .then(value => {
+					          if(value == null){
+					            res.status(404).send("Not found")
+					          }else {
+					            res.json(value);
+					          }
+					        })
+					    }
+						</code></pre>
+						<aside class="notes">
+							Just a few lines of code, to create a product service
+						</aside>
+					</section>
+					<!-- <section>
+						<h2>Frontend Code</h2>
+						<pre><code class="js" data-trim>
+						var PRODUCT_URL  = 'http://product-service.192.168.99.108.nip.io/';
+
+						$.getJSON(PRODUCT_URL, function( data ) {
+						  $.each(data, function( key, val ) {
+						    $("#products").append(`
+						      <div class="card" style="width: 20rem;" data-toggle="modal" data-target="#productModal" data-product="${key}">
+						      <div class="card-header">${val.name}</div>
+						        <img class="card-img-bottom" src="${val.image_url}" alt="${val.name}">
+						      </div>`);
+						  });
+						});
+						</code></pre>
+					</section> -->
+				</section>
+				<section>
+					<section>
+						<h2>Hipchat Order Handling</h2>
+						<aside class="notes">
+							<ul>
+								<li>We like to extend the order handling</li>
+								<li>As of now, the shop is sending hipchat notifications if there is a new order</li>
+								<li>We like to add something to update the order startus using hipchat</li>
+							</ul>
+						</aside>
+					</section>
+					<section data-background-iframe="http://beershop.dkomatx.yaas.io/" data-background-interactive>
+					</section>
+					<section>
+						<h2>ToDo's</h2>
+						<ul>
+							<li>Create Update Function</li>
+							<li>Register Service in API Gateway</li>
+							<li><a href="https://hipchat.hybris.com/addons/byo/cb6a6098-1ae3-4fdd-a0aa-17e85c75d5b1?room=3338" target=="_blank">Register Slash Command in Hipchat</a></li>
+						</ul>
+					</section>
+					<section data-background-iframe="http://beershop.dkomatx.yaas.io/" data-background-interactive>
+					</section>
+				</section>
+				<section>
+					<h2>Yaas Service Factory</h2>
+					<img src="yfactory.png" alt="yFactory ECP integration scenario" width="40%"/>
+				</section>
+				<section>
+					<h1>Thank you</h1>
+					@quablab<br/> johannes.engelke@sap.com<br/> github.com/joek
+				</section>
+
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
