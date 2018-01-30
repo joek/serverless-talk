@@ -1,0 +1,3 @@
+# Serverless Technologies
+
+Serverless Technologies enabling developers to build applications by configuration. The serverside implementation relies on existing services (e.g. Databases, API-Proxies, etc.) and lambda functions deployed on a Function as a Service (FaaS) Plattform. All major cloud providers are offering vendor specific FaaS solutions. To reduce depnedencies to cloud providers and enable deployments in the private cloud, alternatives based on kubernetes are currently developed. SAP Cloud Platform and SAP Hybris are contributing to Kubless, a kubernetes native Serverless Framework. In the talk, we will have a look in kubless and how it is used in SAP Hybris Service Factory.# serverless-talk
