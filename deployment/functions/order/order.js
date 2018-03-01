@@ -2,7 +2,6 @@ const request = require('request');
 const { Etcd3 } = require('etcd3');
 const crypto = require('crypto');
 const client = new Etcd3({hosts: process.env.ETCD_HOSTS});
-const hipchatUrl = process.env.HIPCHAT_URL;
 var nats = require('nats');
 var fs = require('fs');
 
@@ -17,10 +16,8 @@ var createOrder = function(req, res) {
     id: crypto.randomBytes(Math.ceil(20/2))
           .toString('hex') // convert to hexadecimal format
           .slice(0,20).toUpperCase(),
-          // TODO: Add Items
-          // TODO: Add User
-          // TODO: Add Shipping Address
     items: req.body.items,
+    userID: req.body.userID,
     status: "created"
   }
 

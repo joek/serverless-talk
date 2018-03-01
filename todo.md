@@ -3,6 +3,8 @@ ToDo Vortrag:
 Theorie:
 - Martin Fowler (BaaS vs. FaaS)
 - Wikipedia: https://en.wikipedia.org/wiki/Serverless_computing
+- CNCF Serverless
+- https://hackernoon.com/what-the-hell-does-serverless-mean-219a5f6e3c6a
 
 Kubeless:
 - Architecture

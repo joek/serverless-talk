@@ -1,0 +1,53 @@
+apiVersion: apps/v1beta2 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: facebox
+  labels:
+    app: facebox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: facebox
+  template:
+    metadata:
+      labels:
+        app: facebox
+    spec:
+      containers:
+      - name: facebox
+        image: machinebox/facebox:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MB_KEY
+          value: "YTA0M2EwYTBhMzMwNDYyZmQ4MTBjZTk1NGQ4M2Y0ZTQ.06g6m4830Htf5QCGAQU1KWXqiooq_9YuyvfxXAknNrjMX-H4wR9l26lRCAvhcljt4POxb4gkCi45vi1DzMN75A"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: facebox
+spec:
+  selector:
+    app: facebox
+  ports:
+  - protocol: TCP
+    port: 8080
+status:
+  loadBalancer: {}
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: facebox-client
+spec:
+  selector:
+    app: facebox
+  ports:
+  - protocol: TCP
+    port: 8080
+    nodePort: 32380
+  type: NodePort
+status:
+  loadBalancer: {}

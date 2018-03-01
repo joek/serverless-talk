@@ -1,0 +1,88 @@
+apiVersion: apps/v1beta2 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: beershop-deployment
+  labels:
+    app: beershop
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: beershop
+  template:
+    metadata:
+      labels:
+        app: beershop
+    spec:
+      containers:
+      - name: beershop
+        image: joekhybris/beershop:facebox
+        ports:
+        - containerPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: beershop-service
+spec:
+  selector:
+    app: beershop
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 80
+status:
+  loadBalancer: {}
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: beershop-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: 10
+    nginx.ingress.kubernetes.io/proxy-send-timeout: 240
+    nginx.ingress.kubernetes.io/proxy-read-timeout: 240
+spec:
+  tls:
+  - hosts:
+    - beershop.local 
+    secretName: beershop-secret
+  rules:
+  - host: beershop.local 
+    http:
+      paths:
+      - path: /products
+        backend:
+          serviceName: product-service
+          servicePort: 8080
+      - path: /order/
+        backend:
+          serviceName: get-order
+          servicePort: 8080
+      - path: /orderCreate
+        backend:
+          serviceName: create-order
+          servicePort: 8080
+      - path: /userCreate
+        backend:
+          serviceName: user-create
+          servicePort: 8080
+      - path: /user
+        backend:
+          serviceName: user-get
+          servicePort: 8080
+      - backend:
+          serviceName: train-user
+          servicePort: 8080
+        path: /facebox/train
+      - backend:
+          serviceName: find-user
+          servicePort: 8080
+        path: /facebox/find
+      - backend:
+          serviceName: beershop-service
+          servicePort: 8080
+        path: /
+status:
+  loadBalancer: {}

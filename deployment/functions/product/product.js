@@ -3,7 +3,7 @@ const client = new Etcd3({hosts: process.env.ETCD_HOSTS});
 
 module.exports = {
   getProducts: function (req, res) {
-    id = req.originalUrl.replace(/^\//, "");
+    id = req.originalUrl.replace(/^\/products\//, "");
     if (id == ""){
       console.log("all")
       client.getAll().prefix("product_").json()

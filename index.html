@@ -36,6 +36,17 @@
 						</ul>
 					</aside>
 				</section>
+				<!-- <section>
+						<p>Weitergabe und Vervielfältigung dieser Publikation oder von Teilen daraus sind, zu welchem Zweck und in welcher Form auch immer, ohne die ausdrückliche schriftliche Genehmigung durch SAP SE oder ein SAP-Konzernunternehmen nicht gestattet.</p>
+						<p>In dieser Publikation enthaltene Informationen können ohne vorherige Ankündigung geändert werden. Die von SAP SE oder deren Vertriebsfirmen angebotenen Softwareprodukte können Softwarekomponenten auch anderer Softwarehersteller enthalten. Produkte können länderspezifische Unterschiede aufweisen.</p>
+						<p>Die vorliegenden Unterlagen werden von der SAP SE oder einem SAP-Konzernunternehmen bereitgestellt und dienen ausschließlich zu Informationszwecken. <br/>
+							Die SAP SE oder ihre Konzernunternehmen übernehmen keinerlei Haftung oder Gewährleistung für Fehler oder Unvollständigkeiten in dieser Publikation. <br/>
+							Die SAP SE oder ein SAP-Konzernunternehmen steht lediglich für Produkte und Dienstleistungen nach der Maßgabe ein, die in der Vereinbarung über die jeweiligen Produkte und Dienstleistungen ausdrücklich geregelt ist. Keine der hierin enthaltenen Informationen ist als zusätzliche Garantie zu interpretieren. </p>
+						<p>Insbesondere sind die SAP SE oder ihre Konzernunternehmen in keiner Weise verpflichtet, in dieser Publikation oder einer zugehörigen Präsentation dargestellte Geschäftsabläufe zu verfolgen oder hierin wiedergegebene Funktionen zu entwickeln oder zu veröffentlichen. Diese Publikation oder eine zugehörige Präsentation, die Strategie und etwaige künftige Entwicklungen, Produkte und/oder Plattformen der SAP SE oder ihrer Konzernunternehmen können von der SAP SE oder ihren Konzernunternehmen jederzeit und ohne Angabe von Gründen unangekündigt geändert werden. Die in dieser Publikation enthaltenen Informationen stellen keine Zusage, kein Versprechen und keine rechtliche Verpflichtung zur Lieferung von Material, Code oder Funktionen dar. Sämtliche vorausschauenden Aussagen unterliegen unterschiedlichen Risiken und Unsicherheiten, durch die die tatsächlichen Ergebnisse von den Erwartungen abweichen können. Dem Leser wird empfohlen, diesen vorausschauenden Aussagen kein übertriebenes Vertrauen zu schenken und sich bei Kaufentscheidungen nicht auf sie zu stützen.</p>
+						<p>SAP und andere in diesem Dokument erwähnte Produkte und Dienstleistungen von SAP sowie die dazugehörigen Logos sind Marken oder eingetragene Marken der SAP SE (oder von einem SAP-Konzernunternehmen) in Deutschland und verschiedenen anderen Ländern weltweit. Alle anderen Namen von Produkten und Dienstleistungen sind Marken der jeweiligen Firmen. <br/>
+							Zusätzliche Informationen zur Marke und Vermerke finden Sie auf der Seite <a href="https://www.sap.com/corporate/de/legal/copyright.html">https://www.sap.com/corporate/de/legal/copyright.html</a>.</p>
+						
+				</section> -->
 				<section>
 					<h2>Who am I?</h2>
 					<div style="text-align: left; float: left;">
@@ -46,140 +57,190 @@
 						</ul>
 					</div>
 				</section>
-
 				<section>
-					<!-- <section>
-						<h2>Serverless</h2>
-						<blockquote cite="https://martinfowler.com/articles/serverless.html">
-							“Serverless architectures refer to applications that significantly depend on <span class="fragment highlight-red">third-party services</span> (knows as Backend as a Service or "BaaS") or on custom code that's run in <span class="fragment highlight-red">ephemeral containers</span> (Function as a Service or <span class="fragment highlight-red">"FaaS"</span>)...”
+					<section>
+						<h2>Serverless Applications</h2>
+						<blockquote cite="https://martinfowler.com/bliki/Serverless.html">
+							"...rely solely on a combination of third-party services, client-side logic, and service hosted remote procedure calls (FaaS)."
 						</blockquote>
-						<small>https://martinfowler.com/articles/serverless.html</small>
-
-						<aside class="notes">
-							<ul>
-								<li>Obviously Martin Fowler has a blogpost about it</li>
-								<li>He points out there are two differerent architecture types of serverless</li>
-								<ul>
-									<li>BaaS</li>
-									<li>FaaS</li>
-								</ul>
-								<li>I like to point out, that FaaS without BaaS is not really valuable</li>
-							</ul>
-						</aside>
-					</section> -->
-
+						<small>https://martinfowler.com/bliki/Serverless.html</small>
+					</section>
+					<section>
+						<h2>Serverless Applications</h2>
+						<img src="images/serverless.jpg"/>
+					</section>
 					<section>
 						<h2>D-DIY Architecture</h2>
 						Don't do it yourself!
 					</section>
 					<section>
-						<h2>FaaS</h2>
-						Function as a Service
-					</section>
-					<section>
-						<h2>AWS Lambdas</h2>
-						<img src="images/lambda.png" alt="lambda example" />
-						<small>https://docs.aws.amazon.com/solutions/latest/data-lake-solution/architecture.html</small>
-
+						<img src="images/serverless-vendors.jpg" />
 						<aside class="notes">
 							<ul>
-								<li>As you can see here</li>
-								<li>All AWS Lambda Architectures are looking like this</li>
-								<li>A few Lambda Functions using many Backingservices</li>
+								<li>Most of the FaaS providers are Infrastructure service providers</li>
+								<li>They are providing low level services which can be extended with Functions like AWS Lambda</li>
+								<li>FaaS could be way more powerfull if they are used to extend high level services</li>
 							</ul>
 						</aside>
 					</section>
-					<section>
-						<h2>Kubeless</h2>
+
+					<section data-background-image="images/machineroom.jpeg">
+						<!-- https://www.pexels.com/photo/landmark-ship-architecture-american-53562/ -->
+						<aside class="notes">
+							<ul>
+								<li>All thees veondors got one thing in common:</li>
+								<ul>
+									<li>They are all infrastructure service providers</li>
+									<li>They provide low level services</li>
+								</ul>
+							</ul>
+						</aside>
 					</section>
 				</section>
 				<section>
-					<section data-background-iframe="http://beershop.dkomatx.yaas.io/" data-background-interactive>
+					<section data-background-image="images/enterprise.jpeg">
+						<!-- https://www.pexels.com/photo/sea-holiday-vacation-blue-69122/ -->
+						<div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
+							<h2>Enterprise Applications</h2>
+							<aside class="notes">
+								<p>Pertty much a happy place</p>
+								<p>Major issues are solved by Enterprise Apps</p>
+								<p>OnPremise installations of E Apps enables lots of constomizations</p>
+								<p>The Applications can be adjusted to the needs of the customer</p>
+							</aside>
+						</div>
+					</section>
+
+					<section data-background-image="images/airlander.jpg">
+						<!-- <div class="fragment" style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
+							<h2>In the Cloud</h2>
+
+							<small><quote>https://commons.wikimedia.org/wiki/File:Airlander_(33259911463).jpg</quote></small>
+						</div> -->
 						<aside class="notes">
-							<ul>
-								<li>That was the theory part</li>
-								<li> I build a Webshop based on a couple of lambda functions using etcd as a backingservice</li>
-								<li>As we are building a FaaS Plattform based on Kubeless, the functions are deployed to kubless</li>
-								<li>Kubeless is a FaaS System running on Kubernetes</li>
-							</ul>
-						</aside>
+								<p>If Enterprise apps in the cloud, be carefull to not end up like this....</p>	
+								<p>There are several reason, why it is tricky.</p>
+								<ol>
+									<li>Expectations</li>
+									<li>Responibilites</li>
+									<li>Location</li>
+									<li>Speed</li>
+								</ol>
+							</aside>
 					</section>
 					<section>
-						<h2>Serverless Webshop</h2>
+						<div class="fragment">
+							<h2>Serverless</h2>
+							<img src="images/grail.jpeg"/>
+						</div>
+						<aside class="notes">
+								<p>Why it is tricky to fullfill customer requirements:<br/>
+									<ul>
+										<li>OnPrem Software, Configuration and Extensions are bundeled and deployed by the same org.</li>
+										<li>This is not possible in the cloud</li>
+										<li>The Cloud Ops team, has to guard the application from external influences, to be able to manage them on scale.</li>
+									</ul>
+								</p>
+	
+								<p>That said:<br/>
+									<ul>
+										<li>Especially Extensions has to be externalised and decoubpled from the core application</li>
+										<li>Exntesibility has still to be as easy as it was in the past</li>
+										<li>On top, we have to provide solutions, to meet "cloud expectations"</li>
+										<li>
+											<ul>
+												<li>Selfservice</li>
+												<li>Fast deployments</li>
+												<li>Always on</li>
+												<li>Backuped</li>
+												<li>Secured</li>
+												<li>...</li>
+											</ul>
+										</li>
+									</ul>
+								</p>
+							</aside>
+					</section>
+					<section>
+						<h2>
+							Requirements
+						</h2>
 						<ul>
-							<li>JavaScript based Webfrontend</li>
-							<li>Lambdas for:</li>
-							<ul>
-								<li>Product Service</li>
-								<li>Payment Creation</li>
-								<li>Payment Execution (+ Order create)</li>
-							</ul>
+							<li>Deep integration</li>
+							<li>Events</li>
+							<li>API's</li>
+							<li>Platform Agnostic</li>
 						</ul>
 					</section>
-					<section>
-						<h2>Product Service</h2>
-						<pre><code class="js" data-trim data-noescape>
-							id = req.originalUrl.replace(/^\//, "");
-					    if(id != ""){
-					      console.log(id)
-					      client.get("product_" + id).json()
-					        .then(value => {
-					          if(value == null){
-					            res.status(404).send("Not found")
-					          }else {
-					            res.json(value);
-					          }
-					        })
-					    }
-						</code></pre>
-						<aside class="notes">
-							Just a few lines of code, to create a product service
-						</aside>
-					</section>
-					<!-- <section>
-						<h2>Frontend Code</h2>
-						<pre><code class="js" data-trim>
-						var PRODUCT_URL  = 'http://product-service.192.168.99.108.nip.io/';
+				</section>
+				<section>
+					<h2>SAP Hybris Service Factory</h2>
+					<img src="images/ysf.jpg" width="80%"/>
+					<aside class="notes">
+						<p>Serverless as a extension paltform for Enterprise Apps in the cloud is basically one of the core concepts of the Service Factory</p>
 
-						$.getJSON(PRODUCT_URL, function( data ) {
-						  $.each(data, function( key, val ) {
-						    $("#products").append(`
-						      <div class="card" style="width: 20rem;" data-toggle="modal" data-target="#productModal" data-product="${key}">
-						      <div class="card-header">${val.name}</div>
-						        <img class="card-img-bottom" src="${val.image_url}" alt="${val.name}">
-						      </div>`);
-						  });
-						});
-						</code></pre>
-					</section> -->
+						<p>It is based on Kubernetes and due to the use of K8s std. components and concepts, it is possible to enable mycrosevice based extensions as well as lambda based ones.</p>
+
+						<p>There is a out of the box integration with the Enterprise systems available using Web API's and Events.</p>
+
+						<p>Beside that, an integration with 3rd party systems will be provided using the open service broker standard.</p>
+					</aside>
+				
 				</section>
 				<section>
 					<section>
-						<h2>Hipchat Order Handling</h2>
-						<aside class="notes">
-							<ul>
-								<li>We like to extend the order handling</li>
-								<li>As of now, the shop is sending hipchat notifications if there is a new order</li>
-								<li>We like to add something to update the order startus using hipchat</li>
-							</ul>
-						</aside>
+						<h2>Kubeless</h2>
+						<ul>
+							<li>Python, Node.js, Ruby and custom runtimes</li>
+							<li>Build by Bitnami</li>
+							<li>Kubernetes Native</li>
+							<li>Prometheus monitoring and autoscaling</li>
+							<li>Serverless Framework plugin</li>
+						</ul>
 					</section>
-					<section data-background-iframe="http://beershop.dkomatx.yaas.io/" data-background-interactive>
+					<section data-background-video="images/tty.mp4">
+					</section>
+					<section data-background-image="images/kubeless.jpg" data-background-size="80%">
+					</section>
+					<section>
+						<h2>Integrations</h2>
+						<ul>
+							<li>Istio</li>
+							<li>Open Service Broker</li>
+							<li>Custom Event Trigger</li>
+							<li>Client Libs</li>
+						</ul>
+					</section>
+				</section>
+				<section data-background-iframe="https://beershop.local/" data-background-interactive>
+					<aside class="notes">
+						<ul>
+							<li>Just int front: The shop is not based on Hybris Commerce</li>
+							<li>As I try to have a independent demo, I used the YSF to build my own small webshop</li>
+							<li>Maybe later, I will implement a full example</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<section>
+						<h2>Face Login</h2>
+					</section>
+					<section data-background-image="images/facelogin.jpg" data-background-size="80%">
+
 					</section>
 					<section>
 						<h2>ToDo's</h2>
 						<ul>
-							<li>Create Update Function</li>
-							<li>Register Service in API Gateway</li>
-							<li><a href="https://hipchat.hybris.com/addons/byo/cb6a6098-1ae3-4fdd-a0aa-17e85c75d5b1?room=3338" target=="_blank">Register Slash Command in Hipchat</a></li>
+							<li>Setup Facebox from <a href="https://machinebox.io/">machinebox.io</a></li>
+							<li>Train User Function</li>
+							<li>Login User Funciton</li>
+							<li>UI Integration</li>
 						</ul>
 					</section>
-					<section data-background-iframe="http://beershop.dkomatx.yaas.io/" data-background-interactive>
+					<section>
+						<h2>Demo</h2>
+						<a href="https://beershop.local/" target="_bank">Beershop</a>
 					</section>
-				</section>
-				<section>
-					<h2>Yaas Service Factory</h2>
-					<img src="yfactory.png" alt="yFactory ECP integration scenario" width="40%"/>
 				</section>
 				<section>
 					<h1>Thank you</h1>

@@ -20,30 +20,40 @@ TODO: Create aktor for firework
 Install kubeless and push functions
 ```
 minikube start
+minikube addons enable ingress
+
 
 # Install kubeless
-cd deployment
 
 kubectl create ns kubeless
-kubectl create -f kubeless-rbac-v0.3.3.yaml
+kubectl create -f kubeless-v0.4.0.yaml 
+
+
+
+
+# Install YSF
+<!-- kubectl config set-context $(kubectl config current-context) --namespace=production
+echo "$(minikube ip) beershop.local" >> /etc/hosts -->
+
 
 # Install etcd
-cd deployment/etcd/etcd-operator
-./example/rbac/create_role.sh
+cd etcd/etcd-operator
+./example/rbac/create_role.sh --namespace=production
 kubectl create -f example/deployment.yaml
 kubectl get customresourcedefinitions
 cd ..
 kubectl create -f etcd-cluster.yaml
 kubectl apply -f etcd-cluster-nodeport-service.json
 export ETCDCTL_API=3
-export ETCDCTL_ENDPOINTS=$(minikube service etcd-cluster-client-service --url)
+# export ETCDCTL_ENDPOINTS=$(minikube service etcd-cluster-client-service --url -n production)
+export ETCDCTL_ENDPOINTS=$(minikube service etcd-cluster-client-service --url -n default)
 
 # Upload data
 cd data
 ./deploy.sh
 
 # Deploy functions
-cd deployment/functions
+cd functions
 ./deploy.sh
 
 # Deploy nats
@@ -51,11 +61,16 @@ kubectl create configmap nats-config --from-file nats.conf
 kubectl create secret generic tls-nats-server --from-file nats.pem --from-file nats-key.pem --from-file ca.pem
 kubectl create -f nats.yml
 
+# Secret
+kubectl create secret tls beershop-secret --key tls.key --cert tls.crt
+
+
 
 # build client image and deploy
-docker tag $(docker build -q -t beershop .) joekhybris/beershop:latest && docker push joekhybris/beershop:latest
+docker tag $(docker build -q -t beershop .) joekhybris/beershop:default && docker push joekhybris/beershop:default
 kubectl delete deployment beershop-deployment
 kubectl apply -f ../deployment/nginx.yml
+kubectl apply -f ../facebox.yaml 
 ```
 
 NATS
