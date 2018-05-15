@@ -62,16 +62,19 @@ kubectl create secret generic tls-nats-server --from-file nats.pem --from-file n
 kubectl create -f nats.yml
 
 # Secret
+cd ..
 kubectl create secret tls beershop-secret --key tls.key --cert tls.crt
 
 
 
 # build client image and deploy
-docker tag $(docker build -q -t beershop .) joekhybris/beershop:default && docker push joekhybris/beershop:default
+docker tag $(docker build -q -t beershop .) joekhybris/beershop:k && docker push joekhybris/beershop:default
 kubectl delete deployment beershop-deployment
-kubectl apply -f ../deployment/nginx.yml
-kubectl apply -f ../facebox.yaml 
+kubectl apply -f deployment/nginx.yml
+kubectl apply -f facebox.yaml 
 ```
+
+# Setup minikup portforwarding to node port
 
 NATS
 pass: xqwwVp9C&Hn6jXcux4r)vq

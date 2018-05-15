@@ -64,6 +64,10 @@ spec:
         backend:
           serviceName: create-order
           servicePort: 8080
+      - path: /orderStatusUpdate
+        backend:
+          serviceName: update-order-status
+          servicePort: 8080
       - path: /userCreate
         backend:
           serviceName: user-create

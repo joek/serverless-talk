@@ -64,6 +64,10 @@ spec:
         backend:
           serviceName: create-order
           servicePort: 8080
+      - path: /orderStatusUpdate
+        backend:
+          serviceName: update-order-status
+          servicePort: 8080
       - path: /userCreate
         backend:
           serviceName: user-create
@@ -82,6 +86,31 @@ spec:
         path: /facebox/find
       - backend:
           serviceName: beershop-service
+          servicePort: 8080
+        path: /
+status:
+  loadBalancer: {}
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: facebox-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: 10
+    nginx.ingress.kubernetes.io/proxy-send-timeout: 240
+    nginx.ingress.kubernetes.io/proxy-read-timeout: 240
+spec:
+  tls:
+  - hosts:
+    - facebox.local 
+    secretName: beershop-secret
+  rules:
+  - host: facebox.local 
+    http:
+      paths:
+      - backend: 
+          serviceName: facebox
           servicePort: 8080
         path: /
 status:
